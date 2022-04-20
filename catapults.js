@@ -12,6 +12,12 @@ function gearBarPosLock() {
  }
 }
 
+function resolveForceVector(force, angle) {
+  fx = force * (Math.cos(angle * (Math.PI/180)));
+  fy = force * (Math.sin(angle * (Math.PI/180)));
+  return [fx, fy, 0];
+}
+
 function distance(pos1, pos2) {
   var a = pos2[0] - pos1[0];
 var b = pos2[1] - pos1[1];
@@ -59,7 +65,7 @@ document.addEventListener("keypress", function onEvent(event) {
                   barLocked = false;
                   barDown = false;
              geofs.aircraft.instance.rigidBody.reset();
-          var launchForce = geofs.aircraft.instance.rigidBody.mass * 70
+          var launchForce = geofs.aircraft.instance.rigidBody.mass * 10
           ui.notification.show("Away we go!")
           let whiteSmokeEmitter = new geofs.fx.ParticleEmitter({
             anchor: {
